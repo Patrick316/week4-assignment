@@ -1,0 +1,27 @@
+mport url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+
+
+
+
+
+ body {
+ font-family:  'Fjalla One', sans-serif;
+  font-size: 18px;
+  color: 
+  text-shadow:2px 3px 2px black;
+  line-height: 34px;
+  background: url("..");
+  text-align: 
+}
+
+* {
+  box-sizing: border-box;
+}
+.jumbotron{
+background-color: rgba(0,0,0,.8);
+
+
+
+
+}

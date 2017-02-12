@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crystal Game</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<style type="text/css">
+body{
+ background: url("./assets/images/clouds.jpg");
+
+}
+.jumbotron{
+
+background-color: rgba(0,0,0,.3);
+
+
+
+}
+
+.win-loss{
+
+width: 300px;
+height: 150px;
+background-color: #96D5CB;
+padding: 20px;
+margin-bottom: 5px;
+text-align: center;
+
+
+}
+
+
+.number1{
+width: 170px;
+height: 170px;
+background-color: #EAB7B7;
+padding: 50px;
+text-align: center;
+}
+.number2{
+
+width: 170px;
+height: 120px;
+background-color: #F7F152;
+padding: 50px;
+text-align: center;
+margin-bottom: 5px;
+}
+.gems li{
+     display: inline;
+    list-style-type: none;
+    margin:10px;
+
+}
+.gems img{
+   width: 90px;
+   margin-right: 100px;
+
+}
+  </style>
+
+</head>
+
+<body>
+<!-- <img src="./images/download.jpg" style="width:30%"> -->
+
+<div class="container">
+  <div class="row jumbotron" >
+      <h1>Crystal Collector!</h1>
+
+    </div>
+<div class="intro">
+    <div class="row">
+      <ul>
+        <li>You will be giving a random at the start of the game.</li>
+        <li>There are four crystals below. By clicking on a crystal you will add a certain number points to your total score.</li>
+        <li>You win by matching to the random number to the box above the crystals. You loose if your number goes over.</li>
+        <li>The value of each crystal is hidden to you until you click on it.</li>
+        <li>Each new game the numbers will change.</li>
+      </ul>
+ <div class="win-loss">
+        <h6>Wins:<h6><span id="wins"></span>
+        <h6>Losses:<h6><span id="losses"></span>
+</div>
+  </div>
+  </div>
+
+  <div class="row ">
+     <div class="number1">
+     
+       </div>
+          <ul class="gems">
+               </ul>
+         <div class="number2">
+           </div>
+           
+      </div>
+   </div>
+
+
+
+
+<script
+  src="http://code.jquery.com/jquery-3.1.1.slim.min.js"
+  integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+  crossorigin="anonymous"></script>
+
+<script >
+
+$(document).ready(function() {
+/*
+
+
+
+add images of gems to html
+set value of each gem to be a random number
+
+set up div to count upward when gems are clicked with thier value
+set up counter to populate the div with the gem value
+
+set up 2 divs one to hold wins or  and the second to hold losses
+set up if else to determine if your number equals the opponents number or it goes over
+
+
+*/
+var comNumber =  Math.floor(Math.random() * (90 - 40) + 40);
+ $(".number1").html(comNumber);
+var yourNumber = 0;
+$(".number2").html(yourNumber)
+
+var wincounter = 0;
+ $("#wins").html(wincounter);
+var losscounter = 0;
+ $("#losses").html(losscounter);
+
+var gem ={ 
+  purple: {
+   img:"./assets/images/black.jpg", 
+   random: Math.floor(Math.random() * (15 - 7) + 7),
+   points:0
+  },
+  pink: {
+   img:"./assets/images/cool.jpg", 
+   random: Math.floor(Math.random() * (33 - 15) + 15),
+   points:0
+  },
+ blue: {
+   img:"./assets/images/coppersulfate.jpg", 
+   random: Math.floor(Math.random() * (9 - 3) + 3),
+   points:0
+  },
+white: {
+   img:"./assets/images/images.jpg", 
+   random: Math.floor(Math.random() * (2 - 1) + 1),
+   points:0
+  }
+}
+
+
+//add the images to the html
+for (var key in gem) {
+  console.log(gem[key].img)
+
+ $('.gems').append('<li class="'+key+'-1"><img src="'+gem[key].img+'"/></li>') 
+}
+ 
+ //click on pink image
+ $('.pink-1').on('click', function(){
+  yourNumber= yourNumber + gem['pink'].random
+  $('.number2').html(yourNumber)
+  determineWinLoss(yourNumber)
+ })
+
+ $('.purple-1').on('click', function(){
+  yourNumber= yourNumber + gem['purple'].random
+  $('.number2').html(yourNumber)
+  determineWinLoss(yourNumber)
+ })
+
+ $('.blue-1').on('click', function(){
+  yourNumber= yourNumber + gem['blue'].random
+  $('.number2').html(yourNumber)
+  determineWinLoss(yourNumber)
+ })
+
+ $('.white-1').on('click', function(){
+   yourNumber= yourNumber + gem['white'].random
+  $('.number2').html(yourNumber)
+  determineWinLoss(yourNumber)
+  })
+
+function determineWinLoss(yourNumber){
+  var userOutcome = 0;
+  userOutcome = userOutcome + yourNumber
+  if(userOutcome == comNumber){
+    
+           $(".wins").html(wincounter++);
+          alert("YOU WON")
+
+  }else if (userOutcome>comNumber) {
+    $(".losses").html(losscounter++);
+          alert("YOU loose");
+
+
+ }
+
+}
+  
+  
+});
+
+</script>
+
+</body>
+
+</html>
